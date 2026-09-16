@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <template id="homepage_library" inherit_id="website.homepage" name="Bibliothèque Box Africa - Accueil">
         <xpath expr="//div[@id='wrap']" position="inside">
 
@@ -7,7 +8,8 @@
                 <div class="container text-center">
                     <h1 class="display-4">Bibliothèque Box Africa</h1>
                     <p class="lead">Empruntez, découvrez et partagez la lecture.</p>
-                    <a href="/contactus" class="btn btn-light btn-lg mt-3">Nous contacter</a>
+                    <a href="/contactus" class="btn btn-light btn-lg mt-3 me-2">Nous contacter</a>
+                    <a href="/catalogue" class="btn btn-outline-light btn-lg mt-3">Voir le catalogue</a>
                 </div>
             </section>
 
@@ -17,9 +19,21 @@
                     <div class="row">
                         <t t-foreach="request.env['library.book'].sudo().search([], limit=8)" t-as="book">
                             <div class="col-md-3 mb-4">
-                                <div class="card h-100">
+                                <div class="card h-100 shadow-sm">
+                                    <t t-if="'image_1920' in book._fields and book.image_1920">
+                                        <img t-attf-src="/web/image/library.book/#{book.id}/image_1920"
+                                             class="card-img-top" style="height:220px;object-fit:cover;"
+                                             alt="Couverture du livre"/>
+                                    </t>
                                     <div class="card-body">
                                         <h5 class="card-title" t-esc="book.name"/>
+                                        <t t-if="'author_id' in book._fields and book.author_id">
+                                            <p class="card-text text-muted mb-1" t-esc="book.author_id.name"/>
+                                        </t>
+                                        <t t-if="'state' in book._fields">
+                                            <span class="badge bg-success" t-if="book.state == 'available'">Disponible</span>
+                                            <span class="badge bg-secondary" t-if="book.state != 'available'" t-esc="book.state"/>
+                                        </t>
                                     </div>
                                 </div>
                             </div>
@@ -30,4 +44,40 @@
 
         </xpath>
     </template>
+
+    <template id="catalogue_page" name="Bibliothèque Box Africa - Catalogue">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <section class="pt-64 pb-64">
+                    <div class="container">
+                        <h1 class="text-center mb-5">Notre catalogue</h1>
+                        <div class="row">
+                            <t t-foreach="books" t-as="book">
+                                <div class="col-md-3 mb-4">
+                                    <div class="card h-100 shadow-sm">
+                                        <t t-if="'image_1920' in book._fields and book.image_1920">
+                                            <img t-attf-src="/web/image/library.book/#{book.id}/image_1920"
+                                                 class="card-img-top" style="height:220px;object-fit:cover;"
+                                                 alt="Couverture du livre"/>
+                                        </t>
+                                        <div class="card-body">
+                                            <h5 class="card-title" t-esc="book.name"/>
+                                            <t t-if="'author_id' in book._fields and book.author_id">
+                                                <p class="card-text text-muted mb-1" t-esc="book.author_id.name"/>
+                                            </t>
+                                            <t t-if="'state' in book._fields">
+                                                <span class="badge bg-success" t-if="book.state == 'available'">Disponible</span>
+                                                <span class="badge bg-secondary" t-if="book.state != 'available'" t-esc="book.state"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+
 </odoo>

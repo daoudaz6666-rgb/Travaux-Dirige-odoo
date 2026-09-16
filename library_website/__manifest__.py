@@ -5,6 +5,7 @@
     'category': 'Website',
     'depends': ['website', 'library_management'],
     'data': [
+        'data/website_data.xml',
         'views/website_templates.xml',
     ],
     'installable': True,
