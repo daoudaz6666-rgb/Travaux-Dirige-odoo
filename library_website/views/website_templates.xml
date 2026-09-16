@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="homepage_library" inherit_id="website.homepage" name="Bibliothèque Box Africa - Accueil">
+        <xpath expr="//div[@id='wrap']" position="inside">
+
+            <section class="s_banner bg-primary text-white pt-96 pb-96">
+                <div class="container text-center">
+                    <h1 class="display-4">Bibliothèque Box Africa</h1>
+                    <p class="lead">Empruntez, découvrez et partagez la lecture.</p>
+                    <a href="/contactus" class="btn btn-light btn-lg mt-3">Nous contacter</a>
+                </div>
+            </section>
+
+            <section class="pt-64 pb-64">
+                <div class="container">
+                    <h2 class="text-center mb-4">Nos derniers ouvrages</h2>
+                    <div class="row">
+                        <t t-foreach="request.env['library.book'].sudo().search([], limit=8)" t-as="book">
+                            <div class="col-md-3 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title" t-esc="book.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </section>
+
+        </xpath>
+    </template>
+</odoo>
