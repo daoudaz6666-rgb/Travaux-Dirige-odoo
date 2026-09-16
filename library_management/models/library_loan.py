@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 
+
 class LibraryLoan(models.Model):
     _name = 'library.loan'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -7,7 +8,7 @@ class LibraryLoan(models.Model):
 
     book_id = fields.Many2one('library.book', string='Livre', required=True)
     author_id = fields.Many2one(related='book_id.author_id', string='Auteur', store=True, readonly=True)
-    borrower = fields.Char(string='Emprunteur', required=True)
+    borrower_id = fields.Many2one('res.partner', string='Emprunteur', required=True)
     loan_date = fields.Date(string="Date d'emprunt", default=fields.Date.context_today)
     return_date = fields.Date(string='Date de retour prevue')
     state = fields.Selection([
@@ -21,15 +22,17 @@ class LibraryLoan(models.Model):
         if self.book_id and self.book_id.author_id:
             self.author_id = self.book_id.author_id
 
-    def action_borrow(self):
+    def action_confirm_borrow(self):
         for record in self:
-            record.state = 'borrowed'
-            record.book_id.available = False
+            if record.state == 'draft':
+                record.book_id.action_borrow(record.borrower_id.id, return_date=record.return_date)
+                record.write({'state': 'borrowed'})
 
     def action_return(self):
         for record in self:
             record.state = 'returned'
             record.book_id.available = True
+            record.book_id.state = 'available'
 
     def cron_check_overdue_loans(self):
         from datetime import date

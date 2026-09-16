@@ -10,10 +10,14 @@
                 <field name="author_id"/>
                 <field name="isbn"/>
                 <field name="available"/>
+                <field name="state"/>
                 <templates>
                     <t t-name="card">
                         <div class="oe_kanban_global_click">
                             <strong><field name="name"/></strong>
+                    <div>
+                        <field name="state" widget="badge"/>
+                    </div>
                             <div>
                                 <field name="author_id"/>
                             </div>

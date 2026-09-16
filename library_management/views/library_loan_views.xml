@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_borrow" string="Emprunter" type="object"
+                    <button name="action_confirm_borrow" string="Confirmer l'emprunt" type="object"
                             class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_return" string="Retourner" type="object"
                             class="btn-secondary" invisible="state != 'borrowed'"/>
@@ -17,7 +17,7 @@
                     <group>
                         <field name="book_id"/>
                         <field name="author_id"/>
-                        <field name="borrower"/>
+                        <field name="borrower_id"/>
                         <field name="loan_date"/>
                         <field name="return_date"/>
                     </group>
@@ -31,9 +31,9 @@
         <field name="name">library.loan.tree</field>
         <field name="model">library.loan</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-danger="state == 'borrowed' and return_date and return_date &lt; current_date">
                 <field name="book_id"/>
-                <field name="borrower"/>
+                <field name="borrower_id"/>
                 <field name="loan_date"/>
                 <field name="return_date"/>
                 <field name="state"/>

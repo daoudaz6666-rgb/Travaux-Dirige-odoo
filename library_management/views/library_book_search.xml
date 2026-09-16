@@ -12,6 +12,8 @@
                 <filter string="Non disponibles" name="filter_not_available" domain="[('available','=',False)]"/>
                 <separator/>
                 <filter string="Auteur" name="group_author" context="{'group_by':'author_id'}"/>
+                <filter string="Etat" name="group_state" context="{'group_by':'state'}"/>
+                <filter string="Date de publication" name="group_publish_date" context="{'group_by':'publish_date'}"/>
             </search>
         </field>
     </record>
