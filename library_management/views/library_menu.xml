@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_library_root" name="Bibliotheque" sequence="10"
+              web_icon="library_management,static/description/icon.png"/>
+    <menuitem id="menu_library_book" name="Livres" parent="menu_library_root"
+              action="action_library_book" sequence="10"/>
+    <menuitem id="menu_library_author" name="Auteurs" parent="menu_library_root"
+              action="action_library_author" sequence="20"/>
+    <menuitem id="menu_library_loan" name="Emprunts" parent="menu_library_root"
+              action="action_library_loan" sequence="30"/>
+
+</odoo>

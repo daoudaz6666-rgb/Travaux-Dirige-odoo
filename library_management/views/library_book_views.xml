@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_library_book_form" model="ir.ui.view">
+        <field name="name">library.book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="isbn"/>
+                        <field name="author_id"/>
+                        <field name="publish_date"/>
+                        <field name="available"/>
+                    </group>
+                    <notebook>
+                        <page string="Emprunts">
+                            <field name="loan_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_library_book_tree" model="ir.ui.view">
+        <field name="name">library.book.tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="isbn"/>
+                <field name="available"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Livres</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

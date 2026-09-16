@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="demo_author_hugo" model="library.author">
+            <field name="name">Victor Hugo</field>
+            <field name="birth_date">1802-02-26</field>
+        </record>
+
+        <record id="demo_author_camus" model="library.author">
+            <field name="name">Albert Camus</field>
+            <field name="birth_date">1913-11-07</field>
+        </record>
+
+        <record id="demo_book_miserables" model="library.book">
+            <field name="name">Les Miserables</field>
+            <field name="isbn">9780140444308</field>
+            <field name="author_id" ref="demo_author_hugo"/>
+            <field name="publish_date">1862-01-01</field>
+        </record>
+
+        <record id="demo_book_etranger" model="library.book">
+            <field name="name">L'Etranger</field>
+            <field name="isbn">9782070360024</field>
+            <field name="author_id" ref="demo_author_camus"/>
+            <field name="publish_date">1942-01-01</field>
+        </record>
+
+    </data>
+</odoo>

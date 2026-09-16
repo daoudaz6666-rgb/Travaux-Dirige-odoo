@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_library_book_search" model="ir.ui.view">
+        <field name="name">library.book.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="author_id"/>
+                <filter string="Disponibles" name="filter_available" domain="[('available','=',True)]"/>
+                <filter string="Non disponibles" name="filter_not_available" domain="[('available','=',False)]"/>
+                <separator/>
+                <filter string="Auteur" name="group_author" context="{'group_by':'author_id'}"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

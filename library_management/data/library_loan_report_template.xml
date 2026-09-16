@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_library_loan_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Fiche d emprunt</h2>
+                        <table class="table table-sm" style="margin-top: 20px;">
+                            <tr>
+                                <td><strong>Livre :</strong></td>
+                                <td><span t-field="doc.book_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Auteur :</strong></td>
+                                <td><span t-field="doc.author_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Emprunteur :</strong></td>
+                                <td><span t-field="doc.borrower"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date emprunt :</strong></td>
+                                <td><span t-field="doc.loan_date"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date retour prevue :</strong></td>
+                                <td><span t-field="doc.return_date"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Statut :</strong></td>
+                                <td><span t-field="doc.state"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_library_loan" model="ir.actions.report">
+        <field name="name">Fiche emprunt</field>
+        <field name="model">library.loan</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">library_management.report_library_loan_document</field>
+        <field name="report_file">library_management.report_library_loan_document</field>
+        <field name="binding_model_id" ref="model_library_loan"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

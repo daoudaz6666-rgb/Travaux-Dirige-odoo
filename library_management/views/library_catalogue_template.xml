@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="library_catalogue_template" name="Catalogue Bibliotheque">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1>Catalogue des livres disponibles</h1>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Auteur</th>
+                            <th>ISBN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="books" t-as="book">
+                            <tr>
+                                <td><span t-esc="book.name"/></td>
+                                <td><span t-esc="book.author_id.name"/></td>
+                                <td><span t-esc="book.isbn"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+</odoo>

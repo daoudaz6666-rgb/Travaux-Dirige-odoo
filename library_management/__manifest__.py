@@ -1,0 +1,28 @@
+{
+    'name': 'Library Management',
+    'version': '1.0',
+    'summary': 'Gestion de bibliotheque - TP Odoo',
+    'category': 'Tools',
+    'author': 'Daouda ZONGO',
+    'depends': ['base', 'mail', 'website'],
+    'data': [
+        'security/library_security.xml',
+        'security/ir.model.access.csv',
+        'views/library_book_views.xml',
+        'views/library_book_search.xml',
+        'views/library_author_views.xml',
+        'views/library_loan_views.xml',
+        'views/library_menu.xml',
+        'views/library_catalogue_template.xml',
+        'data/library_book_server_action.xml',
+        'data/library_loan_mail_template.xml',
+        'data/library_loan_cron.xml',
+        'data/library_loan_report_template.xml',
+    ],
+    'demo': [
+        'data/library_demo.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_archive_lost_books_server" model="ir.actions.server">
+        <field name="name">Archiver les livres perdus depuis plus de 6 mois</field>
+        <field name="model_id" ref="model_library_book"/>
+        <field name="state">code</field>
+        <field name="code">model.action_archive_lost_books()</field>
+    </record>
+
+</odoo>
