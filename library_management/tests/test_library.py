@@ -14,14 +14,13 @@ class TestLibrary(TransactionCase):
             'isbn': '1234567890',
             'author_id': self.author.id,
         })
-        self.loan = self.env['library.loan'].create({
-            'book_id': self.book.id,
-            'borrower': 'Emprunteur Test',
+        self.partner = self.env['res.partner'].create({
+            'name': 'Emprunteur Test',
         })
 
     def test_action_borrow(self):
-        self.loan.action_borrow()
-        self.assertEqual(self.loan.state, 'borrowed')
+        loan = self.book.action_borrow(self.partner.id)
+        self.assertEqual(loan.state, 'borrowed')
         self.assertFalse(self.book.available)
 
     def test_isbn_constraint(self):

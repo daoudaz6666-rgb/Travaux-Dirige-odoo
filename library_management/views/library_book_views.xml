@@ -6,6 +6,11 @@
         <field name="model">library.book</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_open_new_loan" string="Emprunter" type="object"
+                            class="btn-primary" invisible="state == 'borrowed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,available,borrowed"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
@@ -33,6 +38,7 @@
                 <field name="author_id"/>
                 <field name="isbn"/>
                 <field name="available"/>
+                <field name="state"/>
             </list>
         </field>
     </record>

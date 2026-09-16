@@ -10,6 +10,7 @@
                     <group>
                         <field name="name"/>
                         <field name="birth_date"/>
+                    <field name="book_count"/>
                     </group>
                     <notebook>
                         <page string="Biographie">
@@ -31,6 +32,7 @@
             <list>
                 <field name="name"/>
                 <field name="birth_date"/>
+                    <field name="book_count"/>
             </list>
         </field>
     </record>

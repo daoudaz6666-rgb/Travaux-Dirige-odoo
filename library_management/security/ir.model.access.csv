@@ -3,3 +3,8 @@ access_library_author,library.author,model_library_author,base.group_user,1,1,1,
 access_library_book,library.book,model_library_book,base.group_user,1,1,1,1
 access_library_loan,library.loan,model_library_loan,base.group_user,1,1,1,1
 access_library_book_reader,library.book.reader,model_library_book,group_library_reader,1,0,0,0
+access_library_author_reader,library.author.reader,model_library_author,group_library_reader,1,0,0,0
+access_library_loan_reader,library.loan.reader,model_library_loan,group_library_reader,1,1,1,0
+access_library_author_librarian,library.author.librarian,model_library_author,group_library_librarian,1,1,1,1
+access_library_book_librarian,library.book.librarian,model_library_book,group_library_librarian,1,1,1,1
+access_library_loan_librarian,library.loan.librarian,model_library_loan,group_library_librarian,1,1,1,1
