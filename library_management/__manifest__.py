@@ -9,6 +9,7 @@
         'security/library_security.xml',
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
+        'views/library_book_kanban.xml',
         'views/library_book_search.xml',
         'views/library_author_views.xml',
         'views/library_loan_views.xml',

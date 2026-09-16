@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_library_book_kanban" model="ir.ui.view">
+        <field name="name">library.book.kanban</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="isbn"/>
+                <field name="available"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <field name="author_id"/>
+                            </div>
+                            <div>
+                                ISBN: <field name="isbn"/>
+                            </div>
+                            <div>
+                                <t t-if="record.available.raw_value">
+                                    <span class="badge text-bg-success">Disponible</span>
+                                </t>
+                                <t t-else="">
+                                    <span class="badge text-bg-danger">Indisponible</span>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>
