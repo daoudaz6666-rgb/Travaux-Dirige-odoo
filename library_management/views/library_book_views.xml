@@ -8,7 +8,7 @@
             <form>
                 <header>
                     <button name="action_open_new_loan" string="Emprunter" type="object"
-                            class="btn-primary" invisible="state == 'borrowed'"/>
+                            class="btn-primary" invisible="not available"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,available,borrowed"/>
                 </header>
                 <sheet>
@@ -17,6 +17,7 @@
                         <field name="isbn"/>
                         <field name="author_id"/>
                         <field name="publish_date"/>
+                    <field name="quantity"/>
                         <field name="available"/>
                     </group>
                     <notebook>

@@ -31,7 +31,7 @@ class LibraryLoan(models.Model):
     def action_return(self):
         for record in self:
             record.state = 'returned'
-            record.book_id.available = True
+            record.book_id.write({'state': 'available'})
             record.book_id.state = 'available'
 
     def cron_check_overdue_loans(self):
