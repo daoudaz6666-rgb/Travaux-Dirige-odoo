@@ -5,9 +5,9 @@ from odoo.exceptions import ValidationError
 class LibraryBook(models.Model):
     _inherit = 'library.book'
 
-    def action_borrow(self, borrower_id, return_date=False):
-        Loan = self.env['library.loan']
-        active_loans = Loan.search_count([
+    def _check_borrow_limit(self, borrower_id):
+        super()._check_borrow_limit(borrower_id)
+        active_loans = self.env['library.loan'].search_count([
             ('borrower_id', '=', borrower_id),
             ('state', '=', 'borrowed'),
         ])
@@ -16,7 +16,6 @@ class LibraryBook(models.Model):
                 "Cet emprunteur a deja 3 emprunts en cours. "
                 "Limite atteinte."
             )
-        return super().action_borrow(borrower_id, return_date=return_date)
 
 
 class LibraryLoan(models.Model):

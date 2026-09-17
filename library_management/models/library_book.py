@@ -39,6 +39,9 @@ class LibraryBook(models.Model):
         if self.author_id and not self.name:
             self.name = 'Nouveau livre de ' + self.author_id.name
 
+    def _check_borrow_limit(self, borrower_id):
+        return True
+
     def action_borrow(self, borrower_id, return_date=False):
         self.ensure_one()
         loan = self.env['library.loan'].create({

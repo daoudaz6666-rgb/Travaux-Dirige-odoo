@@ -25,7 +25,12 @@ class LibraryLoan(models.Model):
     def action_confirm_borrow(self):
         for record in self:
             if record.state == 'draft':
-                record.book_id.action_borrow(record.borrower_id.id, return_date=record.return_date)
+                if not record.book_id.available:
+                    raise ValidationError(
+                        "Ce livre n'est plus disponible, il est deja emprunte."
+                    )
+                record.book_id._check_borrow_limit(record.borrower_id.id)
+                record.book_id.sudo().write({'available': False, 'state': 'borrowed'})
                 record.write({'state': 'borrowed'})
 
     def action_return(self):
