@@ -5,9 +5,9 @@
         <field name="name">Rappel emprunt en retard</field>
         <field name="model_id" ref="model_library_loan"/>
         <field name="subject">Rappel : retour de votre emprunt en retard</field>
-        <field name="email_to">{{ object.borrower }}</field>
+        <field name="email_to">{{ object.borrower_id.email }}</field>
         <field name="body_html" type="html">
-            <p>Bonjour ${object.borrower},</p>
+            <p>Bonjour ${object.borrower_id.name},</p>
             <p>Nous vous rappelons que l'emprunt du livre
                "${object.book_id.name}" devait etre retourne le
                ${object.return_date}.</p>

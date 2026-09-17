@@ -18,7 +18,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Emprunteur :</strong></td>
-                                <td><span t-field="doc.borrower"/></td>
+                                <td><span t-field="doc.borrower_id"/></td>
                             </tr>
                             <tr>
                                 <td><strong>Date emprunt :</strong></td>
