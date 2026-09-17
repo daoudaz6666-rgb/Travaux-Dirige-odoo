@@ -17,6 +17,7 @@
                         <field name="isbn"/>
                         <field name="author_id"/>
                         <field name="publish_date"/>
+                    <field name="quantity"/>
                         <field name="available"/>
                     </group>
                     <notebook>

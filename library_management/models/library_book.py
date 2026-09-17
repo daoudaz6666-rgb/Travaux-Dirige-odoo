@@ -9,7 +9,8 @@ class LibraryBook(models.Model):
     isbn = fields.Char(string='ISBN')
     author_id = fields.Many2one('library.author', string='Auteur')
     publish_date = fields.Date(string='Date de publication')
-    available = fields.Boolean(string='Disponible', default=True)
+    quantity = fields.Integer(string='Quantite en stock', default=1)
+    available = fields.Boolean(string='Disponible', compute='_compute_available', store=True)
     lost = fields.Boolean(string='Perdu', default=False)
     lost_date = fields.Date(string='Date de perte')
     state = fields.Selection([
@@ -20,6 +21,12 @@ class LibraryBook(models.Model):
     ], string='Etat', default='draft')
     active = fields.Boolean(default=True)
     loan_ids = fields.One2many('library.loan', 'book_id', string='Emprunts')
+
+    @api.depends('quantity', 'loan_ids.state')
+    def _compute_available(self):
+        for record in self:
+            borrowed = len(record.loan_ids.filtered(lambda l: l.state == 'borrowed'))
+            record.available = record.quantity > borrowed
 
     @api.constrains('isbn')
     def _check_isbn(self):
@@ -40,7 +47,7 @@ class LibraryBook(models.Model):
             'return_date': return_date,
             'state': 'borrowed',
         })
-        self.write({'available': False, 'state': 'borrowed'})
+        self.write({'state': 'borrowed'})
         return loan
 
     def action_open_new_loan(self):
