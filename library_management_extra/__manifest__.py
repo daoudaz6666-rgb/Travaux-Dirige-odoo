@@ -5,7 +5,7 @@
     'category': 'Tools',
     'author': 'Daouda ZONGO',
     'depends': ['library_management'],
-    'data': [],
+    'data': ['views/library_loan_fee_views.xml'],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

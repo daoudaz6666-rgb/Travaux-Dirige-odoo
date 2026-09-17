@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_library_loan_form_fee" model="ir.ui.view">
+        <field name="name">library.loan.form.fee</field>
+        <field name="model">library.loan</field>
+        <field name="inherit_id" ref="library_management.view_library_loan_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='return_date']" position="after">
+                <field name="days_late"/>
+                <field name="late_fee"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_library_loan_tree_fee" model="ir.ui.view">
+        <field name="name">library.loan.tree.fee</field>
+        <field name="model">library.loan</field>
+        <field name="inherit_id" ref="library_management.view_library_loan_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="late_fee"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
