@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="base.main_company" model="res.company">
+        <field name="name">Bibliothèque Box Africa</field>
+    </record>
+
+    <record id="menu_library_catalogue" model="website.menu">
+        <field name="name">Catalogue</field>
+        <field name="url">/catalogue</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">20</field>
+    </record>
+
+</odoo>
