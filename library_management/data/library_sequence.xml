@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_library_member_number" model="ir.sequence">
+        <field name="name">Numero de carte membre bibliotheque</field>
+        <field name="code">library.member.number</field>
+        <field name="prefix">BIB-</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

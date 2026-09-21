@@ -9,12 +9,15 @@ class LibraryLoan(models.Model):
     book_id = fields.Many2one('library.book', string='Livre', required=True)
     author_id = fields.Many2one(related='book_id.author_id', string='Auteur', store=True, readonly=True)
     borrower_id = fields.Many2one('res.partner', string='Emprunteur', required=True)
+    borrower_phone = fields.Char(related='borrower_id.phone', string='Telephone', store=True, readonly=True)
+    borrower_cnib = fields.Char(related='borrower_id.cnib_number', string='Numero CNIB', store=True, readonly=True)
     loan_date = fields.Date(string="Date d'emprunt", default=fields.Date.context_today)
     return_date = fields.Date(string='Date de retour prevue')
     state = fields.Selection([
         ('draft', 'Brouillon'),
         ('borrowed', 'Emprunte'),
         ('returned', 'Retourne'),
+        ('lost', 'Clos suite a perte'),
     ], string='Statut', default='draft')
 
     @api.onchange('book_id')
@@ -25,7 +28,12 @@ class LibraryLoan(models.Model):
     def action_confirm_borrow(self):
         for record in self:
             if record.state == 'draft':
-                record.book_id.action_borrow(record.borrower_id.id, return_date=record.return_date)
+                if not record.book_id.available:
+                    raise ValidationError(
+                        "Ce livre n'est plus disponible, il est deja emprunte."
+                    )
+                record.book_id._check_borrow_limit(record.borrower_id.id)
+                record.book_id.sudo().write({'available': False, 'state': 'borrowed'})
                 record.write({'state': 'borrowed'})
 
     def action_return(self):

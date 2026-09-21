@@ -10,7 +10,8 @@
                     <button name="action_confirm_borrow" string="Confirmer l'emprunt" type="object"
                             class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_return" string="Retourner" type="object"
-                            class="btn-secondary" invisible="state != 'borrowed'"/>
+                            class="btn-secondary" invisible="state != 'borrowed'"
+                            groups="library_management.group_library_librarian"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -18,6 +19,8 @@
                         <field name="book_id"/>
                         <field name="author_id"/>
                         <field name="borrower_id"/>
+                    <field name="borrower_phone"/>
+                    <field name="borrower_cnib"/>
                         <field name="loan_date"/>
                         <field name="return_date"/>
                     </group>

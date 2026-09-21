@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+rom odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 class LibraryBook(models.Model):
@@ -73,8 +73,5 @@ class LibraryBook(models.Model):
             ('active', '=', True),
         ])
         books.write({'active': False})
+X
 
-    def action_mark_lost(self):
-        for record in self:
-            record.state = 'lost'
-            record.available = False
