@@ -9,6 +9,9 @@
                 <header>
                     <button name="action_open_new_loan" string="Emprunter" type="object"
                             class="btn-primary" invisible="not available"/>
+                    <button name="action_mark_lost" string="Declarer perdu" type="object"
+                            class="btn-secondary" invisible="state == 'lost'"
+                            groups="library_management.group_library_librarian"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,available,borrowed"/>
                 </header>
                 <sheet>

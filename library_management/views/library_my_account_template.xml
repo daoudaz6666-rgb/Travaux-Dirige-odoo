@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="library_my_account_template" name="Mon compte bibliotheque">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <h1>Mes informations</h1>
+                <t t-if="saved">
+                    <div class="alert alert-success">Informations mises a jour.</div>
+                </t>
+                <form method="post" action="/library/mon-compte">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="mb-3">
+                        <label>Telephone</label>
+                        <input type="text" class="form-control" name="phone" t-att-value="partner.phone"/>
+                    </div>
+                    <div class="mb-3">
+                        <label>Numero CNIB</label>
+                        <input type="text" class="form-control" name="cnib_number" t-att-value="partner.cnib_number"/>
+                    </div>
+                    <div class="mb-3">
+                        <label>Numero de carte membre</label>
+                        <input type="text" class="form-control" t-att-value="partner.library_member_number" readonly="readonly"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>

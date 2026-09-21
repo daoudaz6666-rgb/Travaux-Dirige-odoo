@@ -24,3 +24,19 @@ class LibraryController(http.Controller):
         return request.render('library_management.library_catalogue_template', {
             'books': books,
         })
+
+    @http.route('/library/mon-compte', type='http', auth='user', website=True, csrf=True)
+    def library_my_account(self, **kwargs):
+        partner = request.env.user.partner_id
+        error = None
+        if request.httprequest.method == 'POST':
+            partner.sudo().write({
+                'phone': kwargs.get('phone'),
+                'cnib_number': kwargs.get('cnib_number'),
+            })
+            error = 'ok'
+        return request.render('library_management.library_my_account_template', {
+            'partner': partner,
+            'saved': error,
+        })
+

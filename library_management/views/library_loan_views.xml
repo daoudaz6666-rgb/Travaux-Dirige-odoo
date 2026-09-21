@@ -19,6 +19,8 @@
                         <field name="book_id"/>
                         <field name="author_id"/>
                         <field name="borrower_id"/>
+                    <field name="borrower_phone"/>
+                    <field name="borrower_cnib"/>
                         <field name="loan_date"/>
                         <field name="return_date"/>
                     </group>

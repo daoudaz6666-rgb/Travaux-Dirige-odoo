@@ -6,6 +6,7 @@
     'author': 'Daouda ZONGO',
     'depends': ['base', 'mail', 'website'],
     'data': [
+        'data/library_sequence.xml',
         'security/library_security.xml',
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
@@ -15,6 +16,8 @@
         'views/library_author_kanban.xml',
         'views/library_loan_views.xml',
         'views/library_loan_kanban.xml',
+        'views/res_partner_views.xml',
+        'views/library_my_account_template.xml',
         'views/library_menu.xml',
         'views/library_catalogue_template.xml',
         'data/library_book_server_action.xml',
